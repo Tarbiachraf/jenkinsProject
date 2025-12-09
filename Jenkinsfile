@@ -2,21 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello'){
+        stage('Checkout') {
             steps {
-                echo "Hello Jenkins"
-            }
-        }
-
-        stage('Info'){
-            steps {
-                echo "User: ${env.BUILD_USER}"
-                echo "Branch: ${env.GIT_BRANCH}"
-            }
-        }
-        stage('Finish'){
-            steps {
-                echo "Pipeline finished!"
+                echo "Cloning repo..."
+                checkout scm
             }
         }
     }
