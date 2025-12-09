@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools {
-       docker 'DOCKER'
-    }
     stages {
         stage('Checkout') {
             steps {
