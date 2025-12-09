@@ -20,6 +20,7 @@ pipeline {
                 sh 'echo hello'
                 sh 'pwd'
                 sh 'git status'
+                sh 'git version'
             }
         }
     }
