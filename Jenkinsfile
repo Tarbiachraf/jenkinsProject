@@ -1,26 +1,22 @@
 pipeline {
     agent any
 
-    tools {
-        maven '3.9.11'
-    }
-
     stages {
-        stage('Checkout'){
-            steps { checkout scm }
-        }
-
-        stage('Build'){
-            steps { sh 'mvn clean package -DskipTests' }
-        }
-
-        stage('comm'){
+        stage('Checkout') {
             steps {
-                sh 'ls -l'
-                sh 'echo hello'
-                sh 'pwd'
-                sh 'git status'
-                sh 'git version'
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t myapp:1.0 .'
+            }
+        }
+
+        stage('Run container') {
+            steps {
+                sh 'docker run --rm myapp:1.0'
             }
         }
     }
